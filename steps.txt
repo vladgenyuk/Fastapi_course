@@ -1,0 +1,21 @@
+alembic revision --autogenerate -m "Database creation"
+alembic upgrade ce4d057762ec (head)
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=postgres
+DB_USER=vlad
+DB_PASS=postgres // For docker
+
+celery -A tasks.tasks:celery worker --loglevel=INFO --pool=solo
+celery -A tasks.tasks:celery flower
+
+
+docker run --name my_db_test -d -p 5433:5432 -e POSTGRES_USER=vlad -e POSTGRES_PASSWORD=qseawdzxc1 postgres
+
+//
+env PYTHONDONTWRITEBYTECODE=1
+env PYTHONUNBUFFERED=1
+docker build . -t fastapi_app:latest
+//
+
