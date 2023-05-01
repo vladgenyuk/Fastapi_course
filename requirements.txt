@@ -1,0 +1,7 @@
+fastapi
+websockets
+websocket-client
+pydantic
+uvicorn
+gunicorn
+jinja2
